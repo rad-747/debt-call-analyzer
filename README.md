@@ -122,4 +122,4 @@ The application processes JSON based debt collection call transcripts containing
 
 ## Author
 
-Rad
+Radhika Panchal
