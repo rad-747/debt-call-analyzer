@@ -144,30 +144,40 @@ with tab3:
 
     df["short_id"] = df["call_id"].str[:8] + "..."
     fig = px.scatter(
-        df,
-        x="overtalk_pct", y="silence_pct",
-        hover_name="short_id",
-        hover_data={"duration_secs": True, "overtalk_secs": True, "silence_secs": True},
-        title="Overtalk % vs Silence % per Call",
-        labels={"overtalk_pct": "Overtalk %", "silence_pct": "Silence %"},
-        color="overtalk_pct",
-        color_continuous_scale="RdYlGn_r",
-    )
+    df,
+    x="overtalk_pct",
+    y="silence_pct",
+    hover_name="short_id",
+    hover_data={
+        "duration_secs": True,
+        "overtalk_secs": True,
+        "silence_secs": True
+    },
+    title="Overtalk % vs Silence % per Call",
+    labels={
+        "overtalk_pct": "Overtalk %",
+        "silence_pct": "Silence %"
+    },
+    color_discrete_sequence=["#00CC96"]
+)
     st.plotly_chart(fig, use_container_width=True)
 
     # Duration vs Overtalk
     st.markdown("### Call Duration vs Overtalk %")
     st.caption("Do longer calls have more overtalk?")
     fig = px.scatter(
-        df,
-        x="duration_secs", y="overtalk_pct",
-        hover_name="short_id",
-        title="Call Duration vs Overtalk %",
-        labels={"duration_secs": "Duration (s)", "overtalk_pct": "Overtalk %"},
-        color="overtalk_pct",
-        color_continuous_scale="Reds",
-        trendline="ols"
-    )
+    df,
+    x="duration_secs",
+    y="overtalk_pct",
+    hover_name="short_id",
+    title="Call Duration vs Overtalk %",
+    labels={
+        "duration_secs": "Duration (s)",
+        "overtalk_pct": "Overtalk %"
+    },
+    color_discrete_sequence=["#FFA15A"],
+    trendline="ols"
+)
     st.plotly_chart(fig, use_container_width=True)
 
  #Tab4: Scorecard with flags
@@ -332,7 +342,7 @@ with tab5:
 
     fig.update_layout(
         barmode='overlay',
-        title=f"Call Timeline — {selected_id[:8]}...",
+        title=f"Call Timeline: {selected_id[:8]}...",
         xaxis_title="Time (seconds)",
         yaxis=dict(categoryorder='array', categoryarray=["Silence", "Overtalk", "Customer", "Agent"]),
         height=350,
