@@ -1,51 +1,88 @@
-# Debt Call Analyzer
+# Debt Collection Call Analyzer
 
-A Streamlit application for analyzing debt collection call transcripts using Regex and LLM-based detection techniques.
+A Streamlit based dashboard for analyzing debt collection call transcripts using Regex and LLM based techniques.
 
-The system helps identify:
-- Profanity and abusive language
-- Dismissive or unprofessional communication
-- Compliance violations
-- Identity verification issues
-- Customer vs Agent behavior patterns
+The project focuses on:
+- Profanity detection
+- Compliance violation detection
+- Call quality metrics analysis
+
+---
 
 ## Features
 
-### Profanity Detection
-Detects:
-- Profanity
-- Abusive language
-- Dismissive language
-- Unprofessional phrases
+### Q1: Profanity Detection
+- Detects abusive or profane language
+- Supports Regex based detection
+- Supports LLM based contextual moderation using Groq API
 
-Supports:
-- Regex-based detection
-- LLM-based contextual analysis using Groq
+### Q2: Compliance Violation Detection
+- Detects sensitive information shared before identity verification
+- Identifies potential compliance risks in calls
 
-### Compliance Analysis
-Checks whether agents disclose sensitive customer information before proper identity verification.
+### Q3: Call Quality Metrics
+- Measures overtalk percentage
+- Measures silence percentage
+- Interactive visualizations and analytics dashboard
 
-The app validates:
-- Identity verification flow
-- Sequence of verification vs disclosure
-- Sensitive information exposure
-- Compliance-safe responses
+---
 
-### Metrics Dashboard
-Displays:
-- Agent vs customer metrics
-- Call-level summaries
-- Detection insights
-- Flagged utterances
-
-## Tech Stack
+## Technologies Used
 
 - Python
 - Streamlit
+- Pandas
+- Plotly
 - Groq API
 - Llama 3.3 70B
 - Regex
 - JSON transcript processing
+
+---
+
+## Live Demo
+
+[Open Streamlit App](https://debt-call-analyzer-kjws4hsuvz5qtvn2kk9qta.streamlit.app)
+
+---
+
+## How to Run Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/rad-747/debt-call-analyzer.git
+cd debt-call-analyzer
+```
+
+### 2. Create and activate a virtual environment
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Add environment variables
+
+Create a `.env` file in the root directory:
+
+```env
+GROQ_API_KEY=your_api_key_here
+```
+
+### 5. Run the Streamlit app
+
+```bash
+streamlit run app.py
+```
+
+---
 
 ## Project Structure
 
@@ -56,7 +93,6 @@ debt_call_analyzer_vs/
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
-├── .env
 
 ├── pages/
 │   ├── q1_profanity.py
@@ -70,3 +106,20 @@ debt_call_analyzer_vs/
 │   └── metrics.py
 
 └── data/
+```
+
+---
+
+## Dataset
+
+The application processes JSON based debt collection call transcripts containing:
+- Speaker labels
+- Timestamps
+- Utterances
+- Call metadata
+
+---
+
+## Author
+
+Rad
